@@ -1,8 +1,7 @@
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
-// replace export
 export default defineConfig({
   server: {
     proxy: {
@@ -16,5 +15,19 @@ export default defineConfig({
       },
     },
   },
-  plugins: [TanStackRouterVite(), react()],
+  plugins: [
+    TanStackRouterVite(),
+    react({
+      babel: {
+        plugins: [
+          [
+            "babel-plugin-react-compiler",
+            {
+              target: "19",
+            },
+          ],
+        ],
+      },
+    }),
+  ],
 });

@@ -4,13 +4,13 @@ import { CartContext } from "../contexts";
 import Cart from "../Cart";
 import Pizza from "../Pizza";
 
-// create the property at the top
-const apiUrl = import.meta.env.VITE_API_URL;
 // feel free to change en-US / USD to your locale
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const Route = createLazyFileRoute("/order")({
   component: Order,
@@ -59,15 +59,19 @@ function Order() {
     setLoading(false);
   }
 
-  function addToCart() {
-    setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
-  }
-
   return (
     <div className="order-page">
       <div className="order">
         <h2>Create Order</h2>
-        <form action={addToCart}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setCart([
+              ...cart,
+              { pizza: selectedPizza, size: pizzaSize, price },
+            ]);
+          }}
+        >
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>

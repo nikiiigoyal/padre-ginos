@@ -39,6 +39,7 @@ nav {
   display: grid;
   border-bottom: 1px solid #ccc;
   grid-template-areas: ". logo logo logo cart";
+  padding: 0 20px;
 }
 
 .logo {
@@ -94,7 +95,7 @@ nav > a {
 
 h2 {
   font-family: var(--font);
-  font-size: 40px;
+  font-size: clamp(24px, 5vw, 40px);
   line-height: auto;
   font-weight: 400;
   color: var(--primary);
@@ -105,7 +106,7 @@ h2::after {
   content: "";
   display: inline-block;
   margin-left: 25px;
-  width: 150px;
+  width: min(150px, 20vw);
   height: 30px;
   background: conic-gradient(
     transparent 90deg,
@@ -139,7 +140,7 @@ form > div:first-child {
 
 form > div > div > label {
   display: block;
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   color: var(--secondary);
   margin-bottom: 10px;
 }
@@ -177,7 +178,7 @@ form input:checked + label {
 
 form > div > div > label {
   display: block;
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   color: var(--secondary);
   margin-bottom: 10px;
 }
@@ -187,7 +188,7 @@ form > div > div > label {
 }
 
 .pizza img {
-  max-width: 200px;
+  max-width: min(200px, 80vw);
   border: 1px solid var(--border);
   border-radius: 5px;
 }
@@ -195,7 +196,7 @@ form > div > div > label {
 .pizza h1 {
   font-weight: normal;
   color: var(--secondary);
-  font-size: 25px;
+  font-size: clamp(18px, 4vw, 25px);
 }
 
 .pizza p {
@@ -205,6 +206,7 @@ form > div > div > label {
 .order form {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 button,
@@ -213,7 +215,7 @@ button,
   background-color: transparent;
   color: var(--primary);
   font-family: var(--font);
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   padding: 5px 15px;
   border-radius: 5px;
   display: inline-block;
@@ -247,6 +249,7 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .pizza-of-the-day > h2 {
@@ -254,7 +257,7 @@ button:disabled {
 }
 
 .pizza-of-the-day-image {
-  max-width: 200px;
+  max-width: min(200px, 80vw);
   border-radius: 5px;
   border: 1px solid var(--border);
 }
@@ -271,6 +274,7 @@ button:disabled {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 50px;
+  padding: 0 20px;
 }
 
 .cart {
@@ -288,6 +292,7 @@ button:disabled {
   color: var(--primary);
   font-family: var(--font);
   font-weight: normal;
+  font-size: clamp(24px, 6vw, 40px);
 }
 
 .index {
@@ -296,6 +301,7 @@ button:disabled {
   gap: 30px;
   max-width: 700px;
   margin: 120px auto;
+  padding: 0 20px;
 }
 
 .index-brand {
@@ -306,7 +312,7 @@ button:disabled {
 .index-brand p {
   color: var(--secondary);
   font-weight: bold;
-  font-size: 40px;
+  font-size: clamp(20px, 6vw, 40px);
   text-transform: uppercase;
   max-width: 315px;
 }
@@ -344,6 +350,7 @@ table {
   font-family: sans-serif;
   min-width: 400px;
   border: 1px solid #dddddd;
+  overflow-x: auto;
 }
 
 thead tr {
@@ -374,12 +381,13 @@ tbody tr:last-of-type {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .pages > div {
   font-family: var(--font);
   color: var(--primary);
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
 }
 
 #modal {
@@ -393,6 +401,7 @@ tbody tr:last-of-type {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 #modal:empty {
@@ -404,6 +413,9 @@ tbody tr:last-of-type {
   text-align: center;
   border-radius: 30px;
   background: var(--background);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 td img {
@@ -413,6 +425,7 @@ td img {
 .error-boundary {
   min-height: 400px;
   text-align: center;
+  padding: 20px;
 }
 
 .error-boundary a {
@@ -425,11 +438,12 @@ td img {
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  padding: 0 20px;
 }
 
 .contact input,
 .contact textarea {
-  width: 500px;
+  width: min(500px, 90vw);
   padding: 8px;
   border: 2px solid var(--border);
   border-radius: 5px;
@@ -456,5 +470,165 @@ td img {
   text-align: center;
   margin: 50px;
   font-weight: normal;
-  font-size: 30px;
+  font-size: clamp(20px, 5vw, 30px);
+}
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 768px) {
+  nav {
+    grid-template-areas: "logo cart";
+    padding: 0 10px;
+  }
+
+  .logo {
+    height: 80px;
+    padding: 10px 0;
+  }
+
+  .nav-cart {
+    font-size: 30px;
+  }
+
+  h2::after {
+    display: none;
+  }
+
+  .order {
+    margin-left: 0;
+  }
+
+  .order form {
+    flex-direction: column;
+  }
+
+  form > div:first-child {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  form input + label {
+    height: 60px;
+    width: 60px;
+    margin: 0 8px 10px 8px;
+  }
+
+  .order-page {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .order-pizza {
+    margin-left: 0;
+  }
+
+  .cart {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  .index {
+    grid-template-columns: 1fr;
+    margin: 60px auto;
+    padding: 0 10px;
+  }
+
+  .index-brand {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .pizza-of-the-day > div {
+    flex-direction: column;
+  }
+
+  .pizza-of-the-day-info {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .pages {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  table {
+    font-size: 0.8em;
+    min-width: 300px;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+  }
+
+  .contact h3 {
+    margin: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 60px;
+  }
+
+  .nav-cart {
+    font-size: 24px;
+  }
+
+  .nav-cart-number {
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    top: -12px;
+    left: -12px;
+  }
+
+  form input + label {
+    height: 50px;
+    width: 50px;
+    margin: 0 5px 10px 5px;
+    font-size: 14px;
+  }
+
+  .past-orders {
+    width: 95%;
+  }
+
+  table {
+    font-size: 0.7em;
+  }
+
+  th,
+  td {
+    padding: 6px 8px;
+  }
+
+  td img {
+    width: 40px;
+  }
+
+  .contact input,
+  .contact textarea {
+    width: 95vw;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .order-page {
+    gap: 30px;
+  }
+
+  .index {
+    margin: 80px auto;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .order-page {
+    max-width: 1500px;
+  }
 }
